@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Victor Kilanko, PhD — Development Economist</title>
+  <meta name="description" content="Victor Kilanko is a development economist and causal inference scientist. Research Fellow at the Cicero Institute. Author of catviz." />
+  <meta property="og:title" content="Victor Kilanko, PhD" />
+  <meta property="og:description" content="The world doesn't have to be this way. The data prove it." />
+  <meta property="og:image" content="victor.png" />
+
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── RESET & BASE ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red:    #C60F01;
+      --teal:   #78CDD7;
+      --dark:   #0D0D0D;
+      --mid:    #1A1A1A;
+      --gray:   #444;
+      --light:  #F5F5F5;
+      --white:  #FFFFFF;
+      --serif:  'Playfair Display', Georgia, serif;
+      --sans:   'Inter', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      color: #222;
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ──────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: rgba(13,13,13,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(198,15,1,0.25);
+      transition: background 0.3s;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo img { width: 36px; height: 36px; object-fit: contain; }
+    .nav-logo span {
+      font-family: var(--serif); font-size: 1rem;
+      color: var(--white); letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase; color: rgba(255,255,255,0.75);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+
+    /* Hamburger (mobile) */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: 0.3s; }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 100px 8% 60px;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 70% 40%, rgba(120,205,215,0.06) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 80%, rgba(198,15,1,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-text { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 1.2rem;
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 700; line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+    .hero-name span { color: var(--red); }
+    .hero-title {
+      font-size: 1rem; font-weight: 300; letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 2rem;
+    }
+    .hero-tagline {
+      font-family: var(--serif);
+      font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+      font-style: italic; font-weight: 600;
+      color: var(--white); line-height: 1.4;
+      border-left: 3px solid var(--red);
+      padding-left: 1.2rem;
+      margin-bottom: 1.4rem;
+    }
+    .hero-sub {
+      font-size: 0.95rem; color: rgba(255,255,255,0.5);
+      margin-bottom: 2.4rem; line-height: 1.8;
+    }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    .btn {
+      display: inline-block; padding: 0.75rem 1.6rem;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; border-radius: 2px;
+      transition: all 0.2s; cursor: pointer;
+    }
+    .btn-primary { background: var(--red); color: var(--white); }
+    .btn-primary:hover { background: #a50e01; }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8);
+    }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+    .hero-photo { position: relative; z-index: 1; }
+    .hero-photo img {
+      width: 100%; max-width: 420px; margin: 0 auto;
+      border-radius: 2px;
+      border-top: 4px solid var(--red);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      object-fit: cover; object-position: top;
+      max-height: 520px;
+    }
+
+    /* ── IMPACT BAR ───────────────────────────────────── */
+    #impact {
+      background: var(--red);
+      padding: 3rem 8%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+    .impact-item {}
+    .impact-num {
+      font-family: var(--serif);
+      font-size: 2.6rem; font-weight: 700;
+      color: var(--white); display: block;
+    }
+    .impact-label {
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.85); margin: 0.2rem 0 0.4rem;
+      display: block;
+    }
+    .impact-desc {
+      font-size: 0.74rem; color: rgba(255,255,255,0.6); line-height: 1.4;
+    }
+
+    /* ── SHARED SECTION STYLES ────────────────────────── */
+    section { padding: 6rem 8%; }
+    .section-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700; line-height: 1.2;
+      color: var(--dark); margin-bottom: 1.2rem;
+    }
+    .section-rule {
+      width: 48px; height: 3px; background: var(--red);
+      margin-bottom: 2.2rem;
+    }
+
+    /* ── ABOUT ────────────────────────────────────────── */
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 5rem; align-items: start; }
+    .about-quote {
+      font-family: var(--serif);
+      font-size: 1.5rem; font-style: italic; font-weight: 600;
+      color: var(--red); line-height: 1.5;
+      border-left: 3px solid var(--teal);
+      padding-left: 1.4rem;
+      margin-bottom: 2rem;
+    }
+    .about-text p { margin-bottom: 1.2rem; color: var(--gray); font-size: 1rem; line-height: 1.85; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--dark); font-weight: 600; }
+
+    .credentials {
+      margin-top: 2.4rem;
+      border-top: 1px solid #eee;
+      padding-top: 1.6rem;
+    }
+    .credentials h4 {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--teal); font-weight: 600; margin-bottom: 1rem;
+    }
+    .cred-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .cred-item { font-size: 0.88rem; color: var(--gray); line-height: 1.4; }
+    .cred-item strong { color: var(--dark); }
+
+    /* ── RESEARCH ─────────────────────────────────────── */
+    #research { background: var(--light); }
+    .research-intro {
+      max-width: 680px; font-size: 1.05rem; color: var(--gray);
+      line-height: 1.8; margin-bottom: 3rem;
+    }
+    .papers-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem; margin-bottom: 2.5rem;
+    }
+    .paper-card {
+      background: var(--white);
+      border-radius: 2px;
+      border-top: 3px solid var(--red);
+      padding: 1.8rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .paper-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.09); transform: translateY(-2px); }
+    .paper-card.methods { border-top-color: var(--teal); }
+    .paper-tag {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 0.7rem;
+    }
+    .paper-card.methods .paper-tag { color: var(--teal); }
+    .paper-title {
+      font-family: var(--serif);
+      font-size: 1.05rem; font-weight: 600; line-height: 1.35;
+      color: var(--dark); margin-bottom: 0.5rem;
+    }
+    .paper-oneliner {
+      font-size: 0.84rem; font-style: italic; color: var(--red);
+      margin-bottom: 0.9rem; line-height: 1.4;
+    }
+    .paper-card.methods .paper-oneliner { color: #3aabb5; }
+    .paper-summary { font-size: 0.88rem; color: var(--gray); line-height: 1.75; margin-bottom: 1rem; }
+    .paper-meta {
+      font-size: 0.74rem; color: #999; letter-spacing: 0.04em;
+      border-top: 1px solid #f0f0f0; padding-top: 0.8rem; margin-top: 0.8rem;
+    }
+
+    .wip-header {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--gray);
+      margin-bottom: 0.8rem;
+    }
+    .wip-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .wip-list li {
+      font-size: 0.88rem; color: var(--gray); padding-left: 1.1rem;
+      position: relative; line-height: 1.5;
+    }
+    .wip-list li::before {
+      content: '→'; position: absolute; left: 0; color: var(--red); font-weight: 700;
+    }
+
+    /* ── CATVIZ ───────────────────────────────────────── */
+    #catviz {
+      background: var(--dark);
+      text-align: center;
+      padding: 5rem 8%;
+    }
+    #catviz .section-label { color: var(--teal); }
+    #catviz .section-title { color: var(--white); }
+    #catviz .section-rule { background: var(--teal); margin: 0 auto 2.2rem; }
+    .catviz-copy {
+      max-width: 620px; margin: 0 auto 2.4rem;
+      font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.85;
+    }
+    .catviz-copy strong { color: var(--white); }
+    .catviz-btns { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+    .btn-teal { background: var(--teal); color: var(--dark); font-weight: 700; }
+    .btn-teal:hover { background: #5dbac5; }
+    .btn-outline-teal { border: 1px solid var(--teal); color: var(--teal); }
+    .btn-outline-teal:hover { background: rgba(120,205,215,0.1); }
+
+    /* ── MY STORY ─────────────────────────────────────── */
+    #story { background: var(--white); }
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .story-quote {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+      font-style: italic; font-weight: 600;
+      color: var(--dark); line-height: 1.45;
+      border-left: 3px solid var(--red);
+      padding: 1.2rem 0 1.2rem 1.6rem;
+      margin-bottom: 1.4rem;
+    }
+    .story-text p { font-size: 1rem; color: var(--gray); line-height: 1.85; margin-bottom: 1.1rem; }
+    .story-visual {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 1.6rem;
+    }
+    .story-logo { width: 100px; opacity: 0.9; }
+    .story-pull {
+      background: var(--red); border-radius: 2px;
+      padding: 2rem 2.2rem; text-align: center;
+      width: 100%;
+    }
+    .story-pull p {
+      font-family: var(--serif); font-size: 1.2rem;
+      font-style: italic; color: var(--white); line-height: 1.6;
+    }
+
+    /* ── CONNECT ──────────────────────────────────────── */
+    #connect { background: var(--light); }
+    .connect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .connect-copy { font-size: 1rem; color: var(--gray); line-height: 1.8; margin-bottom: 1.6rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.9rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 0.8rem;
+      font-size: 0.92rem; color: var(--dark); font-weight: 500;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--red); }
+    .contact-link .icon {
+      width: 36px; height: 36px;
+      background: var(--white); border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; border: 1px solid #e0e0e0;
+      flex-shrink: 0;
+    }
+    .connect-for h4 {
+      font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--teal); font-weight: 600; margin-bottom: 1rem;
+    }
+    .for-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .for-list li {
+      font-size: 0.9rem; color: var(--gray); padding-left: 1rem; position: relative;
+    }
+    .for-list li::before { content: '·'; position: absolute; left: 0; color: var(--red); font-size: 1.2rem; line-height: 1; }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      padding: 2.2rem 8%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-left { display: flex; align-items: center; gap: 12px; }
+    .footer-left img { width: 28px; opacity: 0.8; }
+    .footer-left span { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+    .footer-right { display: flex; gap: 1.4rem; }
+    .footer-right a {
+      font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); transition: color 0.2s;
+    }
+    .footer-right a:hover { color: var(--teal); }
+
+    /* ── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; padding: 100px 6% 60px; }
+      .hero-photo { order: -1; }
+      .hero-photo img { max-height: 340px; }
+      #impact { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 2.4rem; }
+      .papers-grid { grid-template-columns: 1fr; }
+      .story-grid { grid-template-columns: 1fr; }
+      .connect-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 4%; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 4rem 6%; }
+      #impact { grid-template-columns: repeat(2, 1fr); padding: 2.4rem 6%; }
+      .hero-btns { flex-direction: column; }
+      .btn { text-align: center; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ═══════ NAV ═══════════════════════════════════════════ -->
+<nav>
+  <div class="nav-logo">
+    <img src="logo.png" alt="VK Logo" />
+    <span>Victor Kilanko</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#research">Research</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#story">My Story</a></li>
+    <li><a href="#catviz">catviz</a></li>
+    <li><a href="CV_Victor_Kilanko.pdf" target="_blank">CV</a></li>
+    <li><a href="#connect">Connect</a></li>
+  </ul>
+  <div class="hamburger" onclick="this.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ═══════ HERO ════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Research Fellow, Cicero Institute</p>
+    <h1 class="hero-name">Victor Kilanko, <span>PhD</span></h1>
+    <p class="hero-title">Development Economist &nbsp;·&nbsp; Causal Inference Scientist &nbsp;·&nbsp; Policy Architect</p>
+    <blockquote class="hero-tagline">
+      "The world doesn't have to be this way.<br>The data prove it."
+    </blockquote>
+    <p class="hero-sub">
+      Designing the evidence that closes the distance between the world as it is<br>
+      and the world as it should be.
+    </p>
+    <div class="hero-btns">
+      <a href="#research" class="btn btn-primary">Explore Research</a>
+      <a href="CV_Victor_Kilanko.pdf" target="_blank" class="btn btn-outline">Download CV</a>
+      <a href="#story" class="btn btn-outline">My Story</a>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img src="victor.png" alt="Victor Kilanko" />
+  </div>
+</section>
+
+<!-- ═══════ IMPACT BAR ══════════════════════════════════════ -->
+<div id="impact">
+  <div class="impact-item">
+    <span class="impact-num">5</span>
+    <span class="impact-label">Disciplines</span>
+    <span class="impact-desc">Microbiology → Education → Business → Econometrics → Economics</span>
+  </div>
+  <div class="impact-item">
+    <span class="impact-num">4</span>
+    <span class="impact-label">Causal Methods</span>
+    <span class="impact-desc">DiD &nbsp;·&nbsp; SCM &nbsp;·&nbsp; PPSCM &nbsp;·&nbsp; ASCM</span>
+  </div>
+  <div class="impact-item">
+    <span class="impact-num">3</span>
+    <span class="impact-label">Active Policy Papers</span>
+    <span class="impact-desc">Criminal Justice &nbsp;·&nbsp; Healthcare &nbsp;·&nbsp; Housing</span>
+  </div>
+  <div class="impact-item">
+    <span class="impact-num">1</span>
+    <span class="impact-label">R Package on CRAN</span>
+    <span class="impact-desc">catviz — used by researchers worldwide</span>
+  </div>
+</div>
+
+<!-- ═══════ ABOUT ════════════════════════════════════════════ -->
+<section id="about">
+  <p class="section-label">About Victor</p>
+  <div class="about-grid">
+    <div>
+      <blockquote class="about-quote">
+        "The highest calling of a social scientist is not to describe the world as it is — but to help build the world as it should be."
+      </blockquote>
+    </div>
+    <div class="about-text">
+      <div class="section-rule"></div>
+      <p>
+        Victor Kilanko is a development economist and causal inference scientist whose work sits at the intersection of <strong>rigorous empirical science and urgent human need</strong>. He is a Research Fellow at the <strong>Cicero Institute</strong> — one of America's leading policy think tanks — where he leads applied research on criminal justice reform, healthcare policy, housing policy, and the institutional failures that keep talented people trapped in poverty.
+      </p>
+      <p>
+        His research asks the questions that should keep policymakers awake at night: Does privatizing prisons increase incarceration? Do low-barrier shelters affect crime? Does Medicaid expansion actually serve the communities it promised to reach? He does not stop at the answer. He carries the evidence into the rooms where decisions are made.
+      </p>
+      <p>
+        Victor's methodological toolkit spans the frontier of modern econometrics — synthetic control methods, Callaway–Sant'Anna difference-in-differences, doubly robust triple-difference, and machine learning for causal analysis. He is also the author of <strong>catviz</strong>, an open-source R framework for visualizing causal identification strategies, now available on CRAN and used by researchers globally.
+      </p>
+      <p>
+        What makes Victor rare is not any single credential, but the arc of his formation. He trained in five disciplines across three continents — microbiology in Nigeria, educational leadership in California, business strategy in California, and economics at <strong>Claremont Graduate University</strong>, where he earned his PhD in 2025. Each field sharpened a different lens on human systems. Together, they produce a scientist who can see what specialists miss.
+      </p>
+      <p>
+        He advises the <strong>Pan-African Innovation City</strong> initiative, reviews for the <em>Journal of Policy Analysis and Management</em>, and publishes research designed from the ground up to be actionable — not just publishable.
+      </p>
+
+      <div class="credentials">
+        <h4>Academic Formation</h4>
+        <div class="cred-list">
+          <div class="cred-item"><strong>PhD, Economics</strong> — Claremont Graduate University, 2025</div>
+          <div class="cred-item"><strong>MSc, Economics</strong> — Claremont Graduate University, 2022</div>
+          <div class="cred-item"><strong>MBA, Marketing</strong> — La Sierra University, 2019</div>
+          <div class="cred-item"><strong>MA, Educational Leadership</strong> — La Sierra University, 2014</div>
+          <div class="cred-item"><strong>BSc, Microbiology</strong> — Obafemi Awolowo University, 2010</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ RESEARCH ════════════════════════════════════════ -->
+<section id="research">
+  <p class="section-label">Research</p>
+  <h2 class="section-title">Working Papers</h2>
+  <div class="section-rule"></div>
+  <p class="research-intro">
+    Victor's research program targets the three systems that most directly determine whether a person thrives or is trapped: <em>public safety, public health, and public prosperity</em>. Every paper is designed to be published in a top journal and actionable enough to be enacted into policy.
+  </p>
+
+  <div class="papers-grid">
+
+    <div class="paper-card">
+      <p class="paper-tag">Working Paper &nbsp;·&nbsp; Criminal Justice</p>
+      <h3 class="paper-title">The Impact of Psychedelic Reforms on Crime Rates in California</h3>
+      <p class="paper-oneliner">"When police stop enforcing victimless drug laws, crime actually falls."</p>
+      <p class="paper-summary">
+        Using data from 289 California cities across seven years, this study finds that psychedelic decriminalization reduced property crime by 7–10 percent. Not because drugs became legal, but because officers could redirect time toward crimes that actually harm people. Larceny, vehicle theft, and burglary all fell. Violent crime was unaffected. Every low-yield arrest is time not spent on a real crime.
+      </p>
+      <p class="paper-meta">Methods: PPSCM · CSDiD · Sun–Abraham · ASCM</p>
+    </div>
+
+    <div class="paper-card">
+      <p class="paper-tag">Working Paper &nbsp;·&nbsp; Criminal Justice</p>
+      <h3 class="paper-title">The Effect of Privatization on Prison Populations: Evidence from Mississippi</h3>
+      <p class="paper-oneliner">"Private prisons don't just house inmates — they create demand for them."</p>
+      <p class="paper-summary">
+        When Mississippi introduced private prison capacity in 1996, incarceration rose 23 percent — without any corresponding increase in crime. This paper provides the first causal estimates of what private prison entry does to state incarceration. The Mississippi picture is precise: supply-side prison capacity raises incarceration independently of criminal activity. The system, once built, fills itself.
+      </p>
+      <p class="paper-meta">Methods: CSDiD · PPSCM · ASCM &nbsp;·&nbsp; with Ryan Quandt &amp; Cameron Milani</p>
+    </div>
+
+    <div class="paper-card">
+      <p class="paper-tag">Working Paper &nbsp;·&nbsp; Healthcare</p>
+      <h3 class="paper-title">Mission or Margin? Medicaid Expansion and Uncompensated Care in Hospitals</h3>
+      <p class="paper-oneliner">"Nonprofit hospitals promised charity. The data ask whether they delivered it."</p>
+      <p class="paper-summary">
+        Nonprofit hospitals receive billions in annual tax exemptions on the promise they serve communities above commercial interests. Medicaid expansion provides the natural experiment to test that promise. Both nonprofit and for-profit hospitals reduced charity care sharply (~40%) post-expansion. The nonprofit mission advantage is narrower and more conditional than the policy justification for tax exemption implies.
+      </p>
+      <p class="paper-meta">Methods: DR-DiD · DDD · CSDiD &nbsp;·&nbsp; with Ryan Quandt &amp; Elena Gonzalez</p>
+    </div>
+
+    <div class="paper-card methods">
+      <p class="paper-tag">Methods Paper &nbsp;·&nbsp; Econometrics</p>
+      <h3 class="paper-title">Causal Assignment Trees: A Unified Visual Framework for DiD Identification</h3>
+      <p class="paper-oneliner">"Making the logic of causal inference visible to every researcher — and every policymaker."</p>
+      <p class="paper-summary">
+        The most powerful tools in empirical economics are also the most opaque. This paper introduces the Causal Assignment Tree (CAT) — a formal, visual framework that makes the counterfactual structure of DiD, CSDiD, and DDD designs explicit and transparent. Implemented as the open-source R package <strong>catviz</strong> on CRAN, adopted by researchers across economics, public health, and political science.
+      </p>
+      <p class="paper-meta">Package: catviz on CRAN &nbsp;·&nbsp; R &nbsp;·&nbsp; Open Source</p>
+    </div>
+
+  </div>
+
+  <div>
+    <p class="wip-header">Also in Progress</p>
+    <ul class="wip-list">
+      <li>Does Low-Barrier Housing Policy Increase Crime? Evidence from Chicago Emergency Shelters (HUD HEARTH Act, 53 shelters, 2001–2023)</li>
+      <li>Risk-Adjusted Premiums and Gun Harm Reduction: Evaluating San Jose's Firearm Insurance Mandate with ASCM</li>
+      <li>Criminal Justice Without Cash: The Effect of Zero-Bail Policy on Property Crime</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════ CATVIZ ════════════════════════════════════════════ -->
+<section id="catviz">
+  <p class="section-label">Open Science</p>
+  <h2 class="section-title">catviz</h2>
+  <div class="section-rule"></div>
+  <p class="catviz-copy">
+    <strong>catviz</strong> is an open-source R package that visualizes the identification structure of difference-in-differences research designs — making transparent what a regression table leaves hidden. Built by Victor to serve both researchers and the policymakers they advise.
+    <br><br>
+    Available on CRAN. Free. Forever.
+  </p>
+  <div class="catviz-btns">
+    <a href="https://cran.r-project.org/package=catviz" target="_blank" class="btn btn-teal">View on CRAN</a>
+    <a href="https://github.com/VictorKilanko/catviz" target="_blank" class="btn btn-outline-teal">GitHub</a>
+    <a href="https://victorkilanko.gitbook.io/book" target="_blank" class="btn btn-outline-teal">Documentation</a>
+  </div>
+</section>
+
+<!-- ═══════ MY STORY ═════════════════════════════════════════ -->
+<section id="story">
+  <p class="section-label">My Story</p>
+  <h2 class="section-title">The Chapter No Journal Would Publish</h2>
+  <div class="section-rule"></div>
+  <div class="story-grid">
+    <div class="story-text">
+      <blockquote class="story-quote">
+        "The doctors told me I had four to six years left — and that those years would be spent entirely on chemotherapy."
+      </blockquote>
+      <p>
+        That was the diagnosis. Stage-four cancer, spread to his back and leg. His left leg had folded and would not straighten. Victor could not walk, eat, or function normally.
+      </p>
+      <p>
+        During radiation and chemotherapy, he began studying the Bible on healing — and came to understand something that changed everything. He claimed those promises. He repeated them. Slowly, his health began to improve. His leg straightened. The pain subsided.
+      </p>
+      <p>
+        Today there is no cancer. There is no chemotherapy. There is only the work — and the deep conviction that every day since is a gift that demands to be spent on something that matters.
+      </p>
+      <br />
+      <a href="MyStory.pdf" target="_blank" class="btn btn-primary">Read My Full Story</a>
+    </div>
+    <div class="story-visual">
+      <img src="logo.png" alt="VK Logo" class="story-logo" />
+      <div class="story-pull">
+        <p>"He does not study poverty from a distance. He builds the evidence that dismantles it — because he knows what it means to fight for your life."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CONNECT ══════════════════════════════════════════ -->
+<section id="connect">
+  <p class="section-label">Connect</p>
+  <h2 class="section-title">Let's Build the World as It Should Be</h2>
+  <div class="section-rule"></div>
+  <div class="connect-grid">
+    <div>
+      <p class="connect-copy">
+        Victor is available for media inquiries, policy collaboration, speaking engagements, and research partnerships. Reach out through any of the channels below.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:victor.kilanko@gmail.com" class="contact-link">
+          <span class="icon">✉</span> victor.kilanko@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/victorkilanko/" target="_blank" class="contact-link">
+          <span class="icon">in</span> linkedin.com/in/victorkilanko
+        </a>
+        <a href="https://github.com/VictorKilanko" target="_blank" class="contact-link">
+          <span class="icon">⌥</span> github.com/VictorKilanko
+        </a>
+        <a href="https://victorkilanko.gitbook.io/book" target="_blank" class="contact-link">
+          <span class="icon">📖</span> victorkilanko.gitbook.io/book
+        </a>
+      </div>
+    </div>
+    <div class="connect-for">
+      <h4>Available For</h4>
+      <ul class="for-list">
+        <li>Media interviews and press inquiries</li>
+        <li>Policy briefings and legislative testimony</li>
+        <li>Academic speaking and keynotes</li>
+        <li>Research collaboration and partnerships</li>
+        <li>Consulting on causal inference and program evaluation</li>
+        <li>Pan-African development initiatives</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════════════════════════════════════════ -->
+<footer>
+  <div class="footer-left">
+    <img src="logo.png" alt="VK" />
+    <span>© 2025 Victor Kilanko, PhD &nbsp;·&nbsp; Research Fellow, Cicero Institute</span>
+  </div>
+  <div class="footer-right">
+    <a href="#research">Research</a>
+    <a href="#about">About</a>
+    <a href="#story">My Story</a>
+    <a href="CV_Victor_Kilanko.pdf" target="_blank">CV</a>
+    <a href="#connect">Connect</a>
+  </div>
+</footer>
+
+</body>
+</html>
