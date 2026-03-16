@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Victor Kilanko, PhD — Development Economist</title>
-  <meta name="description" content="Victor Kilanko is a development economist and causal inference scientist. Research Fellow at the Cicero Institute. Author of catviz." />
+  <meta name="description" content="Victor Kilanko is a development economist and causal inference scientist. Research Fellow at the Cicero Institute. Author of catviz. Public intellectual, speaker, and founder of SolaceCare Network." />
   <meta property="og:title" content="Victor Kilanko, PhD" />
   <meta property="og:description" content="The world doesn't have to be this way. The data prove it." />
   <meta property="og:image" content="victor.png" />
@@ -40,6 +40,25 @@
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
 
+    /* ── SCROLL ANIMATIONS ────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+    .delay-6 { transition-delay: 0.6s; }
+    .delay-7 { transition-delay: 0.7s; }
+    .delay-8 { transition-delay: 0.8s; }
+
     /* ── NAV ──────────────────────────────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -57,17 +76,35 @@
       font-family: var(--serif); font-size: 1rem;
       color: var(--white); letter-spacing: 0.02em;
     }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
     .nav-links a {
-      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em;
       text-transform: uppercase; color: rgba(255,255,255,0.75);
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--teal); }
 
     /* Hamburger (mobile) */
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: 0.3s; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--white);
+      border-radius: 2px; transition: 0.3s; display: block;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav open state */
+    .nav-links.nav-open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 64px; left: 0; right: 0;
+      background: rgba(13,13,13,0.98);
+      padding: 1.5rem 5%; gap: 1.2rem;
+      border-bottom: 1px solid rgba(198,15,1,0.2);
+    }
 
     /* ── HERO ─────────────────────────────────────────── */
     #hero {
@@ -76,17 +113,42 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      padding: 100px 8% 60px;
+      padding: 100px 8% 80px;
       gap: 4rem;
       position: relative;
       overflow: hidden;
     }
+    /* Animated nebula background */
     #hero::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(ellipse at 70% 40%, rgba(120,205,215,0.06) 0%, transparent 60%),
-                  radial-gradient(ellipse at 20% 80%, rgba(198,15,1,0.08) 0%, transparent 50%);
+      background:
+        radial-gradient(ellipse at 70% 40%, rgba(120,205,215,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 80%, rgba(198,15,1,0.09) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 20%, rgba(120,205,215,0.04) 0%, transparent 45%);
+      animation: nebula 14s ease-in-out infinite alternate;
       pointer-events: none;
+    }
+    @keyframes nebula {
+      0%   { background-position: 0% 0%, 0% 0%, 0% 0%; opacity: 1; }
+      33%  {
+        background:
+          radial-gradient(ellipse at 60% 50%, rgba(120,205,215,0.09) 0%, transparent 55%),
+          radial-gradient(ellipse at 30% 70%, rgba(198,15,1,0.11) 0%, transparent 50%),
+          radial-gradient(ellipse at 75% 15%, rgba(120,205,215,0.05) 0%, transparent 45%);
+      }
+      66%  {
+        background:
+          radial-gradient(ellipse at 80% 30%, rgba(120,205,215,0.06) 0%, transparent 55%),
+          radial-gradient(ellipse at 15% 85%, rgba(198,15,1,0.08) 0%, transparent 50%),
+          radial-gradient(ellipse at 45% 60%, rgba(120,205,215,0.04) 0%, transparent 45%);
+      }
+      100% {
+        background:
+          radial-gradient(ellipse at 65% 45%, rgba(120,205,215,0.08) 0%, transparent 55%),
+          radial-gradient(ellipse at 25% 75%, rgba(198,15,1,0.10) 0%, transparent 50%),
+          radial-gradient(ellipse at 55% 25%, rgba(120,205,215,0.05) 0%, transparent 45%);
+      }
     }
     .hero-text { position: relative; z-index: 1; }
     .hero-eyebrow {
@@ -121,18 +183,27 @@
       margin-bottom: 2.4rem; line-height: 1.8;
     }
     .hero-btns { display: flex; flex-wrap: wrap; gap: 0.8rem; }
-    .btn {
-      display: inline-block; padding: 0.75rem 1.6rem;
-      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em;
-      text-transform: uppercase; border-radius: 2px;
-      transition: all 0.2s; cursor: pointer;
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute; bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.4rem; z-index: 2;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
     }
-    .btn-primary { background: var(--red); color: var(--white); }
-    .btn-primary:hover { background: #a50e01; }
-    .btn-outline {
-      border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8);
+    .scroll-arrow {
+      width: 20px; height: 20px;
+      border-right: 2px solid rgba(255,255,255,0.35);
+      border-bottom: 2px solid rgba(255,255,255,0.35);
+      transform: rotate(45deg);
+      animation: bounce 1.6s ease-in-out infinite;
     }
-    .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50%       { transform: rotate(45deg) translateY(6px); }
+    }
 
     .hero-photo { position: relative; z-index: 1; }
     .hero-photo img {
@@ -142,7 +213,29 @@
       box-shadow: 0 20px 60px rgba(0,0,0,0.5);
       object-fit: cover; object-position: top;
       max-height: 520px;
+      transition: box-shadow 0.3s;
     }
+    .hero-photo img:hover { box-shadow: 0 28px 80px rgba(198,15,1,0.2); }
+
+    /* ── BUTTONS ──────────────────────────────────────── */
+    .btn {
+      display: inline-block; padding: 0.75rem 1.6rem;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; border-radius: 2px;
+      transition: all 0.22s; cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--red); color: var(--white); }
+    .btn-primary:hover { background: #a50e01; transform: translateY(-1px); }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8);
+    }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+    .btn-teal { background: var(--teal); color: var(--dark); font-weight: 700; }
+    .btn-teal:hover { background: #5dbac5; transform: translateY(-1px); }
+    .btn-outline-teal { border: 1px solid var(--teal); color: var(--teal); }
+    .btn-outline-teal:hover { background: rgba(120,205,215,0.1); }
+    .btn-outline-dark { border: 1px solid rgba(13,13,13,0.25); color: var(--dark); }
+    .btn-outline-dark:hover { border-color: var(--red); color: var(--red); }
 
     /* ── IMPACT BAR ───────────────────────────────────── */
     #impact {
@@ -233,9 +326,9 @@
       border-radius: 2px;
       border-top: 3px solid var(--red);
       padding: 1.8rem;
-      transition: box-shadow 0.2s, transform 0.2s;
+      transition: box-shadow 0.25s, transform 0.25s;
     }
-    .paper-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.09); transform: translateY(-2px); }
+    .paper-card:hover { box-shadow: 0 10px 36px rgba(0,0,0,0.1); transform: translateY(-3px); }
     .paper-card.methods { border-top-color: var(--teal); }
     .paper-tag {
       font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em;
@@ -273,25 +366,231 @@
       content: '→'; position: absolute; left: 0; color: var(--red); font-weight: 700;
     }
 
-    /* ── CATVIZ ───────────────────────────────────────── */
-    #catviz {
+    /* ── MY MESSAGE ────────────────────────────────────── */
+    #message { background: #F4F4F4; padding: 0; }
+
+    /* Pillars band at top of message section */
+    .message-pillars-band {
       background: var(--dark);
-      text-align: center;
-      padding: 5rem 8%;
+      padding: 1.6rem 8%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    #catviz .section-label { color: var(--teal); }
-    #catviz .section-title { color: var(--white); }
-    #catviz .section-rule { background: var(--teal); margin: 0 auto 2.2rem; }
-    .catviz-copy {
-      max-width: 620px; margin: 0 auto 2.4rem;
-      font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.85;
+    .message-pillars-inner {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-    .catviz-copy strong { color: var(--white); }
-    .catviz-btns { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
-    .btn-teal { background: var(--teal); color: var(--dark); font-weight: 700; }
-    .btn-teal:hover { background: #5dbac5; }
-    .btn-outline-teal { border: 1px solid var(--teal); color: var(--teal); }
-    .btn-outline-teal:hover { background: rgba(120,205,215,0.1); }
+    .message-pillar {
+      font-family: var(--serif);
+      font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--teal);
+    }
+    .message-pillar-divider {
+      font-size: 1.2rem;
+      color: var(--teal);
+      opacity: 0.45;
+    }
+
+    /* Message section inner content */
+    .message-inner { padding: 6rem 8%; }
+    #message .section-label { color: var(--red); }
+    #message .section-title { color: var(--dark); }
+
+    .message-opening {
+      max-width: 760px;
+      margin-bottom: 4rem;
+    }
+    .message-opening p {
+      font-size: 1.05rem; color: var(--gray); line-height: 1.9;
+      margin-bottom: 1.3rem;
+    }
+    .message-opening p:last-child { margin-bottom: 0; }
+
+    /* Marginal grid */
+    .marginal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.4rem;
+      margin-bottom: 3.5rem;
+    }
+    .marginal-card {
+      background: var(--dark);
+      border-left: 4px solid var(--teal);
+      border-radius: 2px;
+      padding: 1.8rem 2rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .marginal-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
+    .marginal-stat {
+      font-family: var(--serif);
+      font-size: 2rem; font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 0.3rem;
+    }
+    .marginal-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(120,205,215,0.7);
+      margin-bottom: 1rem;
+    }
+    .marginal-card h4 {
+      font-family: var(--serif);
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.7rem;
+    }
+    .marginal-card p {
+      font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.75;
+    }
+
+    /* Message blockquote */
+    .message-blockquote {
+      border-left: 4px solid var(--red);
+      padding: 1.6rem 2.4rem;
+      margin-bottom: 4rem;
+      background: var(--white);
+      border-radius: 0 2px 2px 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    .message-blockquote p {
+      font-family: var(--serif);
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      font-style: italic; font-weight: 600;
+      color: var(--dark); line-height: 1.55;
+    }
+
+    /* Speaking topics */
+    .speaking-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 0.6rem;
+    }
+    .speaking-title {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 700; color: var(--dark);
+      margin-bottom: 2.2rem;
+    }
+    .speaking-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+    .speaking-card {
+      background: var(--white);
+      border-radius: 2px;
+      padding: 1.5rem 1.4rem;
+      border-top: 3px solid #eee;
+      transition: border-top-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .speaking-card:hover {
+      border-top-color: var(--red);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+      transform: translateY(-2px);
+    }
+    .speaking-num {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+      color: var(--red); margin-bottom: 0.5rem;
+    }
+    .speaking-card h4 {
+      font-family: var(--serif);
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--dark); margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+    .speaking-card p {
+      font-size: 0.8rem; color: #888; line-height: 1.6;
+    }
+    .speaking-cta { text-align: center; }
+    .speaking-note {
+      font-size: 0.8rem; color: #999; margin-top: 0.8rem;
+    }
+
+    /* ── PROJECTS ─────────────────────────────────────── */
+    #projects {
+      background: #0F0F0F;
+      padding: 6rem 8%;
+    }
+    #projects .section-label { color: var(--teal); }
+    #projects .section-title { color: var(--white); }
+    #projects .section-rule { background: var(--teal); }
+
+    .projects-intro {
+      max-width: 640px;
+      font-size: 1rem; color: rgba(255,255,255,0.5);
+      line-height: 1.8; margin-bottom: 3.5rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--mid);
+      border-radius: 2px;
+      border-top: 4px solid var(--teal);
+      padding: 2rem 2.2rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .project-card:hover { transform: translateY(-3px); box-shadow: 0 14px 50px rgba(0,0,0,0.3); }
+    .project-card.border-red { border-top-color: var(--red); }
+    .project-card.border-gold { border-top-color: #C9A26A; }
+
+    .project-badge {
+      display: inline-block;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--teal);
+      background: rgba(120,205,215,0.1);
+      border: 1px solid rgba(120,205,215,0.25);
+      padding: 0.22rem 0.7rem; border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+    .project-badge.badge-red {
+      color: var(--red);
+      background: rgba(198,15,1,0.08);
+      border-color: rgba(198,15,1,0.2);
+    }
+    .project-badge.badge-gold {
+      color: #C9A26A;
+      background: rgba(201,162,106,0.08);
+      border-color: rgba(201,162,106,0.2);
+    }
+
+    .project-name {
+      font-family: var(--serif);
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.8rem;
+    }
+    .project-desc {
+      font-size: 0.9rem; color: rgba(255,255,255,0.55);
+      line-height: 1.8; margin-bottom: 1rem;
+    }
+    .project-status {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+      color: var(--teal); text-transform: uppercase; margin-bottom: 1.4rem;
+    }
+    .project-card.border-red .project-status { color: var(--red); }
+    .project-card.border-gold .project-status { color: #C9A26A; }
+    .project-btns { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+    .project-btn {
+      display: inline-block; padding: 0.55rem 1.1rem;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; border-radius: 2px; transition: all 0.2s;
+    }
+    .project-btn-teal { background: rgba(120,205,215,0.15); color: var(--teal); border: 1px solid rgba(120,205,215,0.3); }
+    .project-btn-teal:hover { background: rgba(120,205,215,0.25); }
+    .project-btn-red { background: rgba(198,15,1,0.12); color: var(--red); border: 1px solid rgba(198,15,1,0.25); }
+    .project-btn-red:hover { background: rgba(198,15,1,0.22); }
+    .project-btn-gold { background: rgba(201,162,106,0.12); color: #C9A26A; border: 1px solid rgba(201,162,106,0.25); }
+    .project-btn-gold:hover { background: rgba(201,162,106,0.22); }
+    .project-btn-ghost { color: rgba(255,255,255,0.45); font-size: 0.75rem; padding: 0.55rem 0; cursor: default; }
 
     /* ── MY STORY ─────────────────────────────────────── */
     #story { background: var(--white); }
@@ -306,6 +605,8 @@
       margin-bottom: 1.4rem;
     }
     .story-text p { font-size: 1rem; color: var(--gray); line-height: 1.85; margin-bottom: 1.1rem; }
+    .story-btns { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 0.4rem; }
+    .story-footnote { font-size: 0.8rem; color: #888; margin-top: 0.8rem; }
     .story-visual {
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
@@ -360,7 +661,7 @@
     .footer-left { display: flex; align-items: center; gap: 12px; }
     .footer-left img { width: 28px; opacity: 0.8; }
     .footer-left span { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
-    .footer-right { display: flex; gap: 1.4rem; }
+    .footer-right { display: flex; gap: 1.4rem; flex-wrap: wrap; }
     .footer-right a {
       font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
       color: rgba(255,255,255,0.4); transition: color 0.2s;
@@ -368,25 +669,35 @@
     .footer-right a:hover { color: var(--teal); }
 
     /* ── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .speaking-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 900px) {
       #hero { grid-template-columns: 1fr; padding: 100px 6% 60px; }
       .hero-photo { order: -1; }
       .hero-photo img { max-height: 340px; }
-      #impact { grid-template-columns: repeat(2, 1fr); }
       .about-grid { grid-template-columns: 1fr; gap: 2.4rem; }
       .papers-grid { grid-template-columns: 1fr; }
+      .marginal-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
       .story-grid { grid-template-columns: 1fr; }
       .connect-grid { grid-template-columns: 1fr; }
+      .speaking-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 600px) {
       nav { padding: 0 4%; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
       section { padding: 4rem 6%; }
-      #impact { grid-template-columns: repeat(2, 1fr); padding: 2.4rem 6%; }
+      .message-inner { padding: 4rem 6%; }
+      .message-pillars-band { padding: 1.4rem 6%; }
+      .message-pillars-inner { gap: 1rem; }
+      #projects { padding: 4rem 6%; }
       .hero-btns { flex-direction: column; }
       .btn { text-align: center; }
       footer { flex-direction: column; align-items: flex-start; }
+      .speaking-grid { grid-template-columns: 1fr; }
+      .story-btns { flex-direction: column; }
     }
   </style>
 </head>
@@ -402,14 +713,15 @@
   <ul class="nav-links">
     <li><a href="#research">Research</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#message">My Message</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#story">My Story</a></li>
-    <li><a href="#catviz">catviz</a></li>
     <li><a href="CV_Victor_Kilanko.pdf" target="_blank">CV</a></li>
     <li><a href="#connect">Connect</a></li>
   </ul>
-  <div class="hamburger" onclick="this.classList.toggle('open')">
+  <button class="hamburger" aria-label="Toggle menu">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
 
 <!-- ═══════ HERO ════════════════════════════════════════════ -->
@@ -434,6 +746,9 @@
   <div class="hero-photo">
     <img src="victor.png" alt="Victor Kilanko" />
   </div>
+  <div class="scroll-indicator">
+    <div class="scroll-arrow"></div>
+  </div>
 </section>
 
 <!-- ═══════ IMPACT BAR ══════════════════════════════════════ -->
@@ -449,14 +764,14 @@
 
 <!-- ═══════ ABOUT ════════════════════════════════════════════ -->
 <section id="about">
-  <p class="section-label">About Victor</p>
+  <p class="section-label fade-up">About Victor</p>
   <div class="about-grid">
     <div>
-      <blockquote class="about-quote">
+      <blockquote class="about-quote fade-up delay-1">
         "The highest calling of a social scientist is not to describe the world as it is — but to help build the world as it should be."
       </blockquote>
     </div>
-    <div class="about-text">
+    <div class="about-text fade-up delay-2">
       <div class="section-rule"></div>
       <p>
         Victor Kilanko is a development economist and causal inference scientist whose work sits at the intersection of <strong>rigorous empirical science and urgent human need</strong>. He is a Research Fellow at the <strong>Cicero Institute</strong>, one of America's leading policy think tanks, where he leads applied research on criminal justice reform, healthcare policy, housing policy, and the institutional failures that keep talented people trapped in poverty.
@@ -490,16 +805,16 @@
 
 <!-- ═══════ RESEARCH ════════════════════════════════════════ -->
 <section id="research">
-  <p class="section-label">Research</p>
-  <h2 class="section-title">Working Papers</h2>
-  <div class="section-rule"></div>
-  <p class="research-intro">
+  <p class="section-label fade-up">Research</p>
+  <h2 class="section-title fade-up delay-1">Working Papers</h2>
+  <div class="section-rule fade-up delay-2"></div>
+  <p class="research-intro fade-up delay-2">
     Victor's research program targets the three systems that most directly determine whether a person thrives or is trapped: <em>public safety, public health, and public prosperity</em>. Every paper is designed to be published in a top journal and actionable enough to be enacted into policy.
   </p>
 
   <div class="papers-grid">
 
-    <div class="paper-card">
+    <div class="paper-card fade-up delay-1">
       <p class="paper-tag">Working Paper &nbsp;·&nbsp; Criminal Justice</p>
       <h3 class="paper-title">The Impact of Psychedelic Reforms on Crime Rates in California</h3>
       <p class="paper-oneliner">"When police stop enforcing victimless drug laws, crime actually falls."</p>
@@ -509,7 +824,7 @@
       <p class="paper-meta">Methods: PPSCM · CSDiD · Sun–Abraham · ASCM</p>
     </div>
 
-    <div class="paper-card">
+    <div class="paper-card fade-up delay-2">
       <p class="paper-tag">Working Paper &nbsp;·&nbsp; Criminal Justice</p>
       <h3 class="paper-title">The Effect of Privatization on Prison Populations: Evidence from Mississippi</h3>
       <p class="paper-oneliner">"Private prisons don't just house inmates — they create demand for them."</p>
@@ -519,7 +834,7 @@
       <p class="paper-meta">Methods: CSDiD · PPSCM · ASCM &nbsp;·&nbsp; with Ryan Quandt &amp; Cameron Milani</p>
     </div>
 
-    <div class="paper-card">
+    <div class="paper-card fade-up delay-3">
       <p class="paper-tag">Working Paper &nbsp;·&nbsp; Healthcare</p>
       <h3 class="paper-title">Mission or Margin? Medicaid Expansion and Uncompensated Care in Hospitals</h3>
       <p class="paper-oneliner">"Nonprofit hospitals promised charity. The data ask whether they delivered it."</p>
@@ -529,7 +844,7 @@
       <p class="paper-meta">Methods: DR-DiD · DDD · CSDiD &nbsp;·&nbsp; with Ryan Quandt &amp; Elena Gonzalez</p>
     </div>
 
-    <div class="paper-card methods">
+    <div class="paper-card methods fade-up delay-4">
       <p class="paper-tag">Methods Paper &nbsp;·&nbsp; Econometrics</p>
       <h3 class="paper-title">Causal Assignment Trees: A Unified Visual Framework for DiD Identification</h3>
       <p class="paper-oneliner">"Making the logic of causal inference visible to every researcher — and every policymaker."</p>
@@ -541,7 +856,7 @@
 
   </div>
 
-  <div>
+  <div class="fade-up">
     <p class="wip-header">Also in Progress</p>
     <ul class="wip-list">
       <li>Does Low-Barrier Housing Policy Increase Crime? Evidence from Chicago Emergency Shelters (HUD HEARTH Act, 53 shelters, 2001–2023)</li>
@@ -551,29 +866,192 @@
   </div>
 </section>
 
-<!-- ═══════ CATVIZ ════════════════════════════════════════════ -->
-<section id="catviz">
-  <p class="section-label">Open Science</p>
-  <h2 class="section-title">catviz</h2>
-  <div class="section-rule"></div>
-  <p class="catviz-copy">
-    <strong>catviz</strong> is an open-source R package that visualizes the identification structure of difference-in-differences research designs — making transparent what a regression table leaves hidden. Built by Victor to serve both researchers and the policymakers they advise.
-    <br><br>
-    Available on CRAN. Free. Forever.
+<!-- ═══════ MY MESSAGE ════════════════════════════════════════ -->
+<section id="message">
+
+  <!-- Dark pillars band -->
+  <div class="message-pillars-band">
+    <div class="message-pillars-inner">
+      <span class="message-pillar">Human Development</span>
+      <span class="message-pillar-divider">|</span>
+      <span class="message-pillar">Community Development</span>
+      <span class="message-pillar-divider">|</span>
+      <span class="message-pillar">Economic Development</span>
+    </div>
+  </div>
+
+  <div class="message-inner">
+    <p class="section-label fade-up">My Message</p>
+    <h2 class="section-title fade-up delay-1">Lifting the Marginal</h2>
+    <div class="section-rule fade-up delay-2"></div>
+
+    <div class="message-opening fade-up delay-2">
+      <p>I study what happens when systems fail people — and what evidence-based policy can do to rebuild them. Not as theory. As measurement. As proof.</p>
+      <p>My work is animated by a single conviction: a society is only as strong as its most vulnerable members. Not as a moral sentiment. As a testable, measurable, economic fact.</p>
+      <p>I am passionate about facilitating policies that advance public prosperity through education, healthcare, public safety, and food security. But these are not separate agendas. They are one: the project of ensuring that every human being can participate fully in the economy and the community they belong to.</p>
+      <p>Across the world, millions of people are displaced from productive participation — not by lack of talent, but by systems that were never designed to include them. I call them the Marginal. And the cost of their exclusion — in lives, in labor, in lost potential — is one of the great unacknowledged crises of our time.</p>
+    </div>
+
+    <!-- Marginal grid -->
+    <div class="marginal-grid">
+
+      <div class="marginal-card fade-up delay-1">
+        <div class="marginal-stat">~1.3 Billion</div>
+        <div class="marginal-label">The Sick &amp; Recovering</div>
+        <h4>The Sick &amp; Recovering</h4>
+        <p>Illness doesn't just cost lives — it removes people from the workforce, from their communities, from the systems that need them most. The global economy loses an estimated $6 trillion annually to preventable and undertreated conditions. The sick are not unproductive. They are unsupported.</p>
+      </div>
+
+      <div class="marginal-card fade-up delay-2">
+        <div class="marginal-stat">773 Million</div>
+        <div class="marginal-label">The Uneducated &amp; Undereducated</div>
+        <h4>The Uneducated &amp; Undereducated</h4>
+        <p>Adults worldwide who lack basic literacy. Billions more are undereducated relative to the demands of a modern economy. This is not a talent deficit. It is a policy failure — and a solvable one.</p>
+      </div>
+
+      <div class="marginal-card fade-up delay-3">
+        <div class="marginal-stat">~400 Million</div>
+        <div class="marginal-label">The Unemployed &amp; Underemployed</div>
+        <h4>The Unemployed &amp; Underemployed</h4>
+        <p>People globally who are without work or working far below their potential. When people cannot work, they do not stop existing. They stop contributing. Every barrier removed from employment is an investment with a measurable return.</p>
+      </div>
+
+      <div class="marginal-card fade-up delay-4">
+        <div class="marginal-stat">1.6 Billion</div>
+        <div class="marginal-label">The Unhoused &amp; Housing-Insecure</div>
+        <h4>The Unhoused &amp; Housing-Insecure</h4>
+        <p>People who lack adequate housing worldwide. You cannot plan, save, learn, or thrive without stable shelter. Housing is not a luxury. It is the platform on which every other form of human development rests.</p>
+      </div>
+
+    </div>
+
+    <!-- Central blockquote -->
+    <div class="message-blockquote fade-up">
+      <p>What if we designed systems that brought the Marginal back into productive participation? Better schools, accessible healthcare, housing with dignity, criminal justice without cruelty, food security as a floor rather than an aspiration. The economic return would be measured in trillions. The human return — immeasurable. I use evidence to build that case. And I carry it into the rooms where decisions are made.</p>
+    </div>
+
+    <!-- Speaking topics -->
+    <p class="speaking-label fade-up">Topics I Speak On</p>
+    <h3 class="speaking-title fade-up delay-1">Speaking &amp; Keynotes</h3>
+
+    <div class="speaking-grid">
+      <div class="speaking-card fade-up delay-1">
+        <div class="speaking-num">01</div>
+        <h4>The Economics of Exclusion</h4>
+        <p>What the data show about the Marginal and the cost of systematic exclusion</p>
+      </div>
+      <div class="speaking-card fade-up delay-2">
+        <div class="speaking-num">02</div>
+        <h4>Causal Inference and the Art of Knowing What Works</h4>
+        <p>How evidence-based science should guide policy</p>
+      </div>
+      <div class="speaking-card fade-up delay-3">
+        <div class="speaking-num">03</div>
+        <h4>Criminal Justice Reform</h4>
+        <p>Evidence, not ideology: what the data say about incarceration and community safety</p>
+      </div>
+      <div class="speaking-card fade-up delay-4">
+        <div class="speaking-num">04</div>
+        <h4>Healthcare Access as Economic Policy</h4>
+        <p>Coverage, care, and what Medicaid expansion taught us</p>
+      </div>
+      <div class="speaking-card fade-up delay-1">
+        <div class="speaking-num">05</div>
+        <h4>Housing, Stability, and Human Flourishing</h4>
+        <p>The architecture of a life that can be planned</p>
+      </div>
+      <div class="speaking-card fade-up delay-2">
+        <div class="speaking-num">06</div>
+        <h4>Food Security and Economic Productivity</h4>
+        <p>Development economics and the crisis of hunger</p>
+      </div>
+      <div class="speaking-card fade-up delay-3">
+        <div class="speaking-num">07</div>
+        <h4>The African Growth Story</h4>
+        <p>Development, institutions, and the continent's untapped potential</p>
+      </div>
+      <div class="speaking-card fade-up delay-4">
+        <div class="speaking-num">08</div>
+        <h4>From Diagnosis to Conviction</h4>
+        <p>A scientist's journey through stage-four cancer, faith, and the data</p>
+      </div>
+    </div>
+
+    <div class="speaking-cta fade-up">
+      <a href="#connect" class="btn btn-primary">Invite Victor to Speak</a>
+      <p class="speaking-note">Available for keynotes, policy briefings, academic conferences, and media.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PROJECTS ══════════════════════════════════════════ -->
+<section id="projects">
+  <p class="section-label fade-up">My Projects</p>
+  <h2 class="section-title fade-up delay-1">Beyond the Paper</h2>
+  <div class="section-rule fade-up delay-2"></div>
+  <p class="projects-intro fade-up delay-2">
+    Research is only part of the work. Victor builds tools, platforms, and organizations designed to bring rigorous evidence and compassionate practice into the world.
   </p>
-  <div class="catviz-btns">
-    <a href="https://cran.r-project.org/package=catviz" target="_blank" class="btn btn-teal">View on CRAN</a>
-    <a href="https://github.com/VictorKilanko/catviz" target="_blank" class="btn btn-outline-teal">GitHub Repository</a>
+
+  <div class="projects-grid">
+
+    <!-- catviz -->
+    <div class="project-card fade-up delay-1">
+      <span class="project-badge">R Package · Open Source</span>
+      <h3 class="project-name">catviz</h3>
+      <p class="project-desc">An open-source R framework that makes the identification logic of causal inference visible — turning what a regression table hides into something every researcher and policymaker can see. Available on CRAN. Free. Forever.</p>
+      <p class="project-status">Active · v1.0 on CRAN</p>
+      <div class="project-btns">
+        <a href="https://cran.r-project.org/package=catviz" target="_blank" class="project-btn project-btn-teal">View on CRAN</a>
+        <a href="https://github.com/VictorKilanko/catviz" target="_blank" class="project-btn project-btn-teal">GitHub</a>
+      </div>
+    </div>
+
+    <!-- The Causal Review -->
+    <div class="project-card border-red fade-up delay-2">
+      <span class="project-badge badge-red">Online Magazine · Causal Inference</span>
+      <h3 class="project-name">The Causal Review</h3>
+      <p class="project-desc">A weekly online magazine covering causal inference science for researchers, policymakers, and practitioners worldwide. Rigorous enough for econometricians. Accessible enough for the policymakers who need it most.</p>
+      <p class="project-status">Launching · causalreview.com</p>
+      <div class="project-btns">
+        <a href="https://www.causalreview.com" target="_blank" class="project-btn project-btn-red">Visit Website</a>
+        <span class="project-btn-ghost">Coming Soon</span>
+      </div>
+    </div>
+
+    <!-- SolaceCare Network -->
+    <div class="project-card border-gold fade-up delay-3">
+      <span class="project-badge badge-gold">Care Organization · Founded by Victor</span>
+      <h3 class="project-name">SolaceCare Network</h3>
+      <p class="project-desc">A peer-led compassionate listening network for people at every stage of serious illness — from diagnosis, through treatment, and long after. Founded by Victor following his own stage-four cancer journey, because most care systems are built for treatment, not for the life that follows.</p>
+      <p class="project-status">Active · solacecarenetwork.org</p>
+      <div class="project-btns">
+        <a href="/solacecare/" class="project-btn project-btn-gold">Visit SolaceCare</a>
+        <a href="/solacecare/#mission" class="project-btn project-btn-gold">Our Mission</a>
+      </div>
+    </div>
+
+    <!-- Pan-African Innovation City -->
+    <div class="project-card fade-up delay-4">
+      <span class="project-badge">Policy Advisory · Africa</span>
+      <h3 class="project-name">Pan-African Innovation City</h3>
+      <p class="project-desc">Victor advises the Pan-African Innovation City initiative — a bold effort to build the institutional infrastructure for innovation, entrepreneurship, and knowledge-economy growth across the African continent.</p>
+      <p class="project-status">Active · Policy Advisor</p>
+      <div class="project-btns">
+        <a href="#connect" class="project-btn project-btn-teal">Learn More</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- ═══════ MY STORY ═════════════════════════════════════════ -->
 <section id="story">
-  <p class="section-label">My Story</p>
-  <h2 class="section-title">The Chapter No Journal Would Publish</h2>
-  <div class="section-rule"></div>
+  <p class="section-label fade-up">My Story</p>
+  <h2 class="section-title fade-up delay-1">The Chapter No Journal Would Publish</h2>
+  <div class="section-rule fade-up delay-2"></div>
   <div class="story-grid">
-    <div class="story-text">
+    <div class="story-text fade-up delay-2">
       <blockquote class="story-quote">
         "No cure. No hope. The prognosis was death — whatever years remained would be spent entirely on chemotherapy."
       </blockquote>
@@ -587,9 +1065,13 @@
         Today there is no cancer. There is no chemotherapy. There is only the work — and the deep conviction that every day since is a gift that demands to be spent on something that matters.
       </p>
       <br />
-      <a href="MyStory.pdf" target="_blank" class="btn btn-primary">Read My Full Story</a>
+      <div class="story-btns">
+        <a href="MyStory.pdf" target="_blank" class="btn btn-primary">Read My Full Story</a>
+        <a href="/solacecare/" target="_blank" class="btn btn-outline">Visit SolaceCare Network</a>
+      </div>
+      <p class="story-footnote">SolaceCare Network — the care organization Victor founded born from his own illness journey.</p>
     </div>
-    <div class="story-visual">
+    <div class="story-visual fade-up delay-3">
       <img src="logo.png" alt="VK Logo" class="story-logo" />
       <div class="story-pull">
         <p>"He does not study poverty from a distance. He builds the evidence that dismantles it — because he knows what it means to fight for your life."</p>
@@ -600,17 +1082,17 @@
 
 <!-- ═══════ CONNECT ══════════════════════════════════════════ -->
 <section id="connect">
-  <p class="section-label">Connect</p>
-  <h2 class="section-title">Let's Build the World as It Should Be</h2>
-  <div class="section-rule"></div>
+  <p class="section-label fade-up">Connect</p>
+  <h2 class="section-title fade-up delay-1">Let's Build the World as It Should Be</h2>
+  <div class="section-rule fade-up delay-2"></div>
   <div class="connect-grid">
-    <div>
+    <div class="fade-up delay-2">
       <p class="connect-copy">
         Victor is available for media inquiries, policy collaboration, speaking engagements, and research partnerships. Reach out through any of the channels below.
       </p>
       <div class="contact-links">
-        <a href="mailto:victor.kilanko@gmail.com" class="contact-link">
-          <span class="icon">✉</span> victor.kilanko@gmail.com
+        <a href="mailto:victor@victorkilanko.com" class="contact-link">
+          <span class="icon">✉</span> victor@victorkilanko.com
         </a>
         <a href="https://www.linkedin.com/in/victorkilanko/" target="_blank" class="contact-link">
           <span class="icon">in</span> linkedin.com/in/victorkilanko
@@ -620,7 +1102,7 @@
         </a>
       </div>
     </div>
-    <div class="connect-for">
+    <div class="connect-for fade-up delay-3">
       <h4>Available For</h4>
       <ul class="for-list">
         <li>Media interviews and press inquiries</li>
@@ -643,11 +1125,39 @@
   <div class="footer-right">
     <a href="#research">Research</a>
     <a href="#about">About</a>
+    <a href="#message">My Message</a>
+    <a href="#projects">Projects</a>
     <a href="#story">My Story</a>
     <a href="CV_Victor_Kilanko.pdf" target="_blank">CV</a>
     <a href="#connect">Connect</a>
   </div>
 </footer>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Mobile nav
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-open');
+      hamburger.classList.toggle('open');
+    });
+  }
+
+  // Close mobile nav on link click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('nav-open');
+      hamburger.classList.remove('open');
+    });
+  });
+</script>
 
 </body>
 </html>
