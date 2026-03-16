@@ -147,26 +147,29 @@
     /* ── IMPACT BAR ───────────────────────────────────── */
     #impact {
       background: var(--red);
-      padding: 3rem 8%;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      text-align: center;
+      padding: 2.2rem 8%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .impact-item {}
-    .impact-num {
+    .impact-trio {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .impact-pillar {
       font-family: var(--serif);
-      font-size: 2.6rem; font-weight: 700;
-      color: var(--white); display: block;
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--white);
     }
-    .impact-label {
-      font-size: 0.78rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(255,255,255,0.85); margin: 0.2rem 0 0.4rem;
-      display: block;
-    }
-    .impact-desc {
-      font-size: 0.74rem; color: rgba(255,255,255,0.6); line-height: 1.4;
+    .impact-divider {
+      font-size: 1.4rem;
+      color: rgba(255,255,255,0.4);
+      font-weight: 300;
     }
 
     /* ── SHARED SECTION STYLES ────────────────────────── */
@@ -435,25 +438,12 @@
 
 <!-- ═══════ IMPACT BAR ══════════════════════════════════════ -->
 <div id="impact">
-  <div class="impact-item">
-    <span class="impact-num">5</span>
-    <span class="impact-label">Disciplines</span>
-    <span class="impact-desc">Microbiology → Education → Business → Econometrics → Economics</span>
-  </div>
-  <div class="impact-item">
-    <span class="impact-num" style="font-size:1.6rem;letter-spacing:-0.01em;">Full Toolkit</span>
-    <span class="impact-label">Causal Methods</span>
-    <span class="impact-desc">DiD, synthetic control, machine learning, and the full frontier of quasi-experimental design</span>
-  </div>
-  <div class="impact-item">
-    <span class="impact-num">3</span>
-    <span class="impact-label">Active Policy Papers</span>
-    <span class="impact-desc">Criminal Justice &nbsp;·&nbsp; Healthcare &nbsp;·&nbsp; Housing</span>
-  </div>
-  <div class="impact-item">
-    <span class="impact-num">1</span>
-    <span class="impact-label">R Package on CRAN</span>
-    <span class="impact-desc">catviz — used by researchers worldwide</span>
+  <div class="impact-trio">
+    <span class="impact-pillar">Public Health</span>
+    <span class="impact-divider">|</span>
+    <span class="impact-pillar">Public Safety</span>
+    <span class="impact-divider">|</span>
+    <span class="impact-pillar">Public Prosperity</span>
   </div>
 </div>
 
