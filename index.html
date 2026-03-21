@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Victor Kilanko, PhD — Development Economist</title>
-  <meta name="description" content="Victor Kilanko is a development economist and causal inference scientist. Research Fellow at the Cicero Institute. Author of catviz. Public intellectual, speaker, and founder of SolaceCare Network." />
+  <meta name="description" content="Victor Kilanko is a development economist and causal inference scientist. Research Fellow at the Cicero Institute. Author of catviz. Public intellectual, speaker, and policy scientist." />
   <meta property="og:title" content="Victor Kilanko, PhD" />
   <meta property="og:description" content="The world doesn't have to be this way. The data prove it." />
   <meta property="og:image" content="victor.png" />
@@ -447,6 +447,11 @@
     .marginal-card p {
       font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.75;
     }
+    .marginal-source {
+      font-size: 0.72rem; color: rgba(255,255,255,0.35); margin-top: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.6rem;
+      font-style: italic;
+    }
 
     /* Message blockquote */
     .message-blockquote {
@@ -779,23 +784,23 @@
     <div class="about-text fade-up delay-2">
       <div class="section-rule"></div>
       <p>
-        Victor Kilanko is a development economist and causal inference scientist whose work sits at the intersection of <strong>rigorous empirical science and urgent human need</strong>. He is a Research Fellow at the <strong>Cicero Institute</strong>, one of America's leading policy think tanks, where he leads applied research on criminal justice reform, healthcare policy, housing policy, and the institutional failures that keep talented people trapped in poverty.
+        Victor Kilanko is a development economist and causal inference scientist whose work sits at the intersection of rigorous empirical science and urgent human need. He is a Research Fellow at the Cicero Institute, one of America's leading policy think tanks, where he leads applied research on criminal justice reform, healthcare policy, housing policy, and the institutional failures that keep talented people trapped in poverty.
       </p>
       <p>
         His research asks the questions that should keep policymakers awake at night: Does privatizing prisons increase incarceration? Do low-barrier shelters affect crime? Does Medicaid expansion actually serve the communities it promised to reach? He does not stop at the answer. He carries the evidence into the rooms where decisions are made.
       </p>
       <p>
-        Victor's methodological toolkit spans the full frontier of modern econometrics, from synthetic control methods and Callaway–Sant'Anna difference-in-differences to doubly robust estimators and machine learning for causal analysis. He is also the author of <strong>catviz</strong>, an open-source R framework for visualizing causal identification strategies, now available on CRAN and used by researchers globally.
+        Victor's methodological toolkit spans the full frontier of modern econometrics, from synthetic control methods and Callaway–Sant'Anna difference-in-differences to doubly robust estimators and machine learning for causal analysis. He is also the author of catviz, an open-source R framework for visualizing causal identification strategies, now available on CRAN and used by researchers globally.
       </p>
       <p>
-        What makes Victor rare is not any single credential, but the arc of his formation. He trained in five disciplines across two continents, beginning with microbiology in Nigeria and continuing through educational leadership, business strategy, and economics in California, culminating in a PhD from <strong>Claremont Graduate University</strong> in 2025. Each field sharpened a different lens on human systems. Together, they produce a scientist who can see what specialists miss.
+        What makes Victor rare is not any single credential, but the arc of his formation. He trained in five disciplines across two continents, beginning with microbiology in Nigeria and continuing through educational leadership, business strategy, and economics in California, culminating in a PhD from Claremont Graduate University in 2025. Each field sharpened a different lens on human systems. Together, they produce a scientist who can see what specialists miss.
       </p>
       <p>
-        He advises the <strong>Pan-African Innovation City</strong> initiative and publishes research designed from the ground up to be actionable, not just publishable.
+        <!-- He advises the Pan-African Innovation City initiative and publishes research designed from the ground up to be actionable, not just publishable. -->
       </p>
 
       <div class="credentials">
-        <h4>Academic Formation</h4>
+        <!-- <h4>Academic Formation</h4> -->
         <div class="cred-list">
           <div class="cred-item"><strong>PhD, Economics</strong> — Claremont Graduate University, 2025</div>
           <div class="cred-item"><strong>MSc, Economics</strong> — Claremont Graduate University, 2022</div>
@@ -854,7 +859,7 @@
       <h3 class="paper-title">Causal Assignment Trees: A Unified Visual Framework for DiD Identification</h3>
       <p class="paper-oneliner">"Making the logic of causal inference visible to every researcher — and every policymaker."</p>
       <p class="paper-summary">
-        The most powerful tools in empirical economics are also the most opaque. This paper introduces the Causal Assignment Tree (CAT) — a formal, visual framework that makes the counterfactual structure of DiD, CSDiD, and DDD designs explicit and transparent. Implemented as the open-source R package <strong>catviz</strong> on CRAN, adopted by researchers across economics, public health, and political science.
+        The most powerful tools in empirical economics are also the most opaque. This paper introduces the Causal Assignment Tree (CAT) — a formal, visual framework that makes the counterfactual structure of DiD, CSDiD, and DDD designs explicit and transparent. Implemented as the open-source R package catviz on CRAN, adopted by researchers across economics, public health, and political science.
       </p>
       <p class="paper-meta">Package: catviz on CRAN &nbsp;·&nbsp; R &nbsp;·&nbsp; Open Source</p>
     </div>
@@ -904,7 +909,8 @@
         <div class="marginal-stat">~1.3 Billion</div>
         <div class="marginal-label">The Sick &amp; Recovering</div>
         <h4>The Sick &amp; Recovering</h4>
-        <p>Illness doesn't just cost lives. It removes people from the workforce, from their communities, from the systems that need them most. The global economy loses an estimated $6 trillion annually to preventable and undertreated conditions. The sick are not unproductive. They are unsupported.</p>
+        <p>Illness doesn't just cost lives. It removes people from the workforce, from their communities, from the systems that need them most. The World Economic Forum estimates the cumulative economic burden of preventable and undertreated conditions at $47 trillion over twenty years. The sick are not unproductive. They are unsupported.</p>
+        <p class="marginal-source">WHO, Noncommunicable Diseases Fact Sheet (2023); World Economic Forum / Harvard School of Public Health (2011)</p>
       </div>
 
       <div class="marginal-card fade-up delay-2">
@@ -912,6 +918,7 @@
         <div class="marginal-label">The Uneducated &amp; Undereducated</div>
         <h4>The Uneducated &amp; Undereducated</h4>
         <p>Adults worldwide lack basic literacy, and billions more are undereducated relative to the demands of a modern economy. This is not a talent deficit. It is a policy failure, and a solvable one.</p>
+        <p class="marginal-source">UNESCO Institute for Statistics (2022). Global Education Monitoring Report.</p>
       </div>
 
       <div class="marginal-card fade-up delay-3">
@@ -919,6 +926,7 @@
         <div class="marginal-label">The Unemployed &amp; Underemployed</div>
         <h4>The Unemployed &amp; Underemployed</h4>
         <p>People globally who are without work or working far below their potential. When people cannot work, they do not stop existing. They stop contributing. Every barrier removed from employment is an investment with a measurable return.</p>
+        <p class="marginal-source">ILO, World Employment and Social Outlook: Trends 2024. (Combines headline unemployment of ~186 million with ILO estimates of underemployment.)</p>
       </div>
 
       <div class="marginal-card fade-up delay-4">
@@ -926,6 +934,7 @@
         <div class="marginal-label">The Unhoused &amp; Housing-Insecure</div>
         <h4>The Unhoused &amp; Housing-Insecure</h4>
         <p>People who lack adequate housing worldwide. You cannot plan, save, learn, or thrive without stable shelter. Housing is not a luxury. It is the platform on which every other form of human development rests.</p>
+        <p class="marginal-source">UN-Habitat, World Cities Report 2022. United Nations Human Settlements Programme.</p>
       </div>
 
     </div>
@@ -938,7 +947,7 @@
     <!-- Speaking topics -->
     <p class="speaking-label fade-up">Topics I Speak On</p>
     <h3 class="speaking-title fade-up delay-1">Speaking &amp; Keynotes</h3>
-    <p class="speaking-subtitle fade-up delay-2">Victor speaks on <strong>Human Development</strong>, <strong>Community Development</strong>, and <strong>Economic Development</strong>, with a particular passion for education, skills training, vocational development, and workforce economics. All of his talks are grounded in evidence and real-world data. Other topics include:</p>
+    <p class="speaking-subtitle fade-up delay-2">Victor speaks on Human Development, Community Development, and Economic Development, with a particular passion for education, skills training, vocational development, and workforce economics. All of his talks are grounded in evidence and real-world data. Other topics include:</p>
 
     <div class="speaking-grid">
       <div class="speaking-card fade-up delay-1">
@@ -1025,28 +1034,6 @@
       </div>
     </div>
 
-    <!-- SolaceCare Network -->
-    <div class="project-card border-gold fade-up delay-3">
-      <span class="project-badge badge-gold">Care Organization · Founded by Victor</span>
-      <h3 class="project-name">SolaceCare Network</h3>
-      <p class="project-desc">A peer-led compassionate listening network for people at every stage of serious illness: from diagnosis, through treatment, and long after. Founded by Victor following his own stage-four cancer journey, because most care systems are built for treatment, not for the life that follows.</p>
-      <p class="project-status">Active · solacecarenetwork.org</p>
-      <div class="project-btns">
-        <a href="/solacecare/" class="project-btn project-btn-gold">Visit SolaceCare</a>
-        <a href="/solacecare/#mission" class="project-btn project-btn-gold">Our Mission</a>
-      </div>
-    </div>
-
-    <!-- Pan-African Innovation City -->
-    <div class="project-card fade-up delay-4">
-      <span class="project-badge">Policy Advisory · Africa</span>
-      <h3 class="project-name">Pan-African Innovation City</h3>
-      <p class="project-desc">Victor advises the Pan-African Innovation City initiative, a bold effort to build the institutional infrastructure for innovation, entrepreneurship, and knowledge-economy growth across the African continent.</p>
-      <p class="project-status">Active · Policy Advisor</p>
-      <div class="project-btns">
-        <a href="#connect" class="project-btn project-btn-teal">Learn More</a>
-      </div>
-    </div>
 
   </div>
 </section>
@@ -1073,9 +1060,7 @@
       <br />
       <div class="story-btns">
         <a href="MyStory.pdf" target="_blank" class="btn btn-primary">Read My Full Story</a>
-        <a href="/solacecare/" target="_blank" class="btn btn-outline">Visit SolaceCare Network</a>
       </div>
-      <p class="story-footnote">SolaceCare Network, founded by Victor from his own journey through serious illness.</p>
     </div>
     <div class="story-visual fade-up delay-3">
       <img src="logo.png" alt="VK Logo" class="story-logo" />
@@ -1116,7 +1101,7 @@
         <li>Academic speaking and keynotes</li>
         <li>Research collaboration and partnerships</li>
         <li>Consulting on causal inference and program evaluation</li>
-        <li>Pan-African development initiatives</li>
+
       </ul>
     </div>
   </div>
